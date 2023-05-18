@@ -15,6 +15,7 @@ jobs:
           |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker build -t circleci-appdemo:$TAG .
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push circleci-appdemo:$TAG
+          echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+          docker tag circleci-appdemo:$TAG circleci-appdemo:latest
+          docker push circleci-appdemo:latest
       
